@@ -20,6 +20,7 @@ class MyApp extends HookConsumerWidget {
 
     return MaterialApp(
       home: Scaffold(
+        appBar: AppBar(title: const Text('Counter example')),
         body: Center(
           child: Text('$count'),
         ),
