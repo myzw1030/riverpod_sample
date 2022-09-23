@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+final helloWorldProvider = Provider((_) => 'Hello World');
 
 void main() {
   runApp(
@@ -9,26 +11,18 @@ void main() {
   );
 }
 
-final counterProvider = StateProvider((ref) => 0);
-
-class MyApp extends HookConsumerWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final int count = ref.watch(counterProvider);
+    final String value = ref.watch(helloWorldProvider);
 
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(title: const Text('Counter example')),
         body: Center(
-          child: Text('$count'),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            ref.read(counterProvider.notifier).state++;
-          },
-          child: const Icon(Icons.add),
+          child: Text(value),
         ),
       ),
     );
